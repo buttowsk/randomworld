@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import {TbSend, TbThumbUp} from "react-icons/tb";
-import {FaRegComment} from "react-icons/fa";
-
+import {TbSend} from "react-icons/tb";
+import {FaRegComment, FaHeart} from "react-icons/fa";
 
 export const Container = styled.div`
   margin: auto auto 0 auto;
@@ -40,7 +39,7 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  margin: 8px 10px;
+  margin: 8px 2%;
   padding: 2px 2px;
   ${props => props.comments ? "color: #BDCDD6;" : null}
 `
@@ -51,19 +50,25 @@ export const PostImage = styled.img`
   border-radius: 8px;
   box-shadow: 1px 2px 2px rgba(240, 233, 210, 0.25);
 `
-export const LikeButton = styled(TbThumbUp)`
+export const LikeButton = styled(FaHeart)`
   width: 28px;
   height: 28px;
   margin: 2%;
+  ${props => props.isLiked ? "fill: red;" +
+      "transition: color 1s ease;" : "color: white"};
 `
 export const CommentButton = styled(FaRegComment)`
   width: 28px;
   height: 28px;
-  margin: 8px 12px;
+  margin: 2%;
 `
 export const SendButton = styled(TbSend)`
   width: 28px;
   height: 28px;
   margin: 2%;
 `
-
+export const Likes = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  margin: 8px 2%; 
+`

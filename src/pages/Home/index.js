@@ -5,10 +5,11 @@ import {useEffect, useState} from "react";
 export const Home = () => {
     const [users, setUsers] = useState([])
     const word = "sunset"
+
     useEffect(() => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         usePhotoSearch(word).then((results) => {
-            setUsers(results);
+            setUsers([...results]);
         });
     }, [word]);
 
@@ -16,7 +17,7 @@ export const Home = () => {
         <>
             <Header />
             {users.map((user) => (
-                <Post postPhoto={user.urls.regular} postComents={"adjiajda"} postText={user.description} profilePic={user.user.profile_image.small} profileName={user.user.username}/>
+                <Post postPhoto={user.urls.regular} postComents={"adjiajda"} postText={user.description} profilePic={user.user.profile_image.small} profileName={user.user.username} postLikes={user.likes}/>
             ))}
         </>
     );

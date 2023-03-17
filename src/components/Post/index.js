@@ -1,7 +1,7 @@
 import {Row, Container, PostImage, PostContent, Column, LikeButton, SendButton, CommentButton, Likes} from "./styles"
 import {useEffect, useState} from "react";
-import {Comments} from "../Comments";
-export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText, postComents, postLikes }) => {
+import {CommentsModal} from "../CommentsModal";
+export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText,postLikes }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [likes, setLikes] = useState(postLikes)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -26,21 +26,29 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
         setIsModalOpen(!isModalOpen)
     }
 
+
     return (
         <>
-            {isModalOpen ? <Comments isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/> : null}
+            {isModalOpen ? <CommentsModal isModalOpen={isModalOpen}
+                                     setIsModalOpen={setIsModalOpen}
+                                     profilePic={profilePic}
+                                     profileName={profileName}
+                                     image={postPhoto}
+                                     postText={postText}
+                                     postLikes={postLikes}
+            /> : null}
         <Container>
             <PostContent>
                 <Row info={true}><img src={profilePic} alt="profile"/> <p>{profileName}</p></Row>
                 <PostImage src={postPhoto} alt={postPhotoAlt} />
                 <Row>
-                    <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
+                    <LikeButton isliked={isLiked} onClick={handleLikeClick} />
                     <CommentButton onClick={handleCommentClick} />
                     <SendButton />
                 </Row>
                 <Likes>{`${likes} curtidas`}</Likes>
                 <Column>{postText}</Column>
-                <Column comments={true}>{postComents}</Column>
+                <Column comments={true}>{"2q3131 comentários"}</Column>
             </PostContent>
         </Container>
         </>

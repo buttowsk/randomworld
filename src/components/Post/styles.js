@@ -54,7 +54,7 @@ export const LikeButton = styled(FaHeart)`
   width: 28px;
   height: 28px;
   margin: 2%;
-  ${props => props.isLiked ? "fill: red;" +
+  ${props => props.isliked ? "fill: red;" +
       "transition: color 1s ease;" : "color: white"};
 `
 export const CommentButton = styled(FaRegComment)`

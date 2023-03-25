@@ -13,7 +13,7 @@ export const Container = styled.div`
 `
 export const PostContent = styled.div`
   width: 80%;
-  border-bottom: 1px solid #BDCDD6;
+  border-bottom: 1px solid rgba(151, 210, 236, 0.5);
 `
 
 export const Row = styled.div`
@@ -36,8 +36,7 @@ export const PostImage = styled.img`
   width: 100%;
   height: 300px;
   border-radius: 5px;
-  filter: drop-shadow(0 0 1px rgba(151, 210, 236, 0.5));
-  
+  filter: drop-shadow(0 0 0 rgba(151, 210, 236, 0.5));
 `
 export const LikeButton = styled(FaHeart)`
   width: 28px;

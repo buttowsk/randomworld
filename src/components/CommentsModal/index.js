@@ -2,10 +2,18 @@ import {
     ModalWrapper,
     Background,
     CloseButton,
-    Row,
     CommentImage,
     Column,
-    CommentsContainer, UserName, UserPhoto, CommentText, Comment, LikesText, NewCommentRow, SendCommentButton, CommentInput
+    CommentsContainer,
+    UserName,
+    UserPhoto,
+    CommentText,
+    Comment,
+    LikesText,
+    NewCommentRow,
+    SendCommentButton,
+    CommentInput,
+    ButtonsContainer, UserInfo, MiniLikeButton, CommentInfo, BottomContainer
 } from "./styles"
 import { useRef, useState } from "react";
 import {CommentButton, LikeButton, SendButton} from "../Post/styles";
@@ -40,34 +48,45 @@ export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileN
                             <CommentImage src={image}/>
                         </Column>
                         <Column info={true}>
-                            <Row userInfo={true}>
+                            <UserInfo>
                                 <UserPhoto src={profilePic} alt="profile"/>
                                 <UserName>{profileName}</UserName>
-                                <CommentText>{postText}</CommentText>
-                            </Row>
+                            </UserInfo>
                             <CommentsContainer>
+                                <Comment userPost={true}>
+                                    <CommentInfo>
+                                        <UserPhoto src={profilePic} alt="profile"/>
+                                        <UserName>{profileName}</UserName>
+                                        <CommentText>{postText}</CommentText>
+                                    </CommentInfo>
+                                </Comment>
                                 {randomComments.map((comment, index) => {
                                     return (
-                                            <Comment key={index}>
+                                        <Comment key={index}>
+                                            <CommentInfo>
                                                 <UserPhoto src={comment.user.photo} alt={'profile'}/>
                                                 <UserName>{comment.user.username}</UserName>
                                                 <CommentText>{comment.commentText.body}</CommentText>
-                                            </Comment>
-                                        )
+                                            </CommentInfo>
+                                            <MiniLikeButton/>
+                                        </Comment>
+                                    )
                                 })}
                             </CommentsContainer>
-                            <Row>
-                                <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
-                                <CommentButton />
-                                <SendButton />
-                            </Row>
-                            <LikesText>{`${likes} curtidas`}</LikesText>
-                            <NewCommentRow>
-                                <CommentInput placeholder={'Adicione um comentário...'} type={'text'}/>
-                                <SendCommentButton>
-                                    Publicar
-                                </SendCommentButton>
-                            </NewCommentRow>
+                            <BottomContainer>
+                                <ButtonsContainer>
+                                    <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
+                                    <CommentButton />
+                                    <SendButton />
+                                </ButtonsContainer>
+                                <LikesText>{`${likes} curtidas`}</LikesText>
+                                <NewCommentRow>
+                                    <CommentInput placeholder={'Adicione um comentário...'} type={'text'}/>
+                                    <SendCommentButton>
+                                        Publicar
+                                    </SendCommentButton>
+                                </NewCommentRow>
+                            </BottomContainer>
                         </Column>
                     </ModalWrapper>
                 </Background>

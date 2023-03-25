@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {IoIosClose} from "react-icons/io"
+import {TiHeartOutline} from "react-icons/ti"
 
 export const Background = styled.div`
   width: 100%;
@@ -10,6 +11,7 @@ export const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99999;
 `
 export const ModalWrapper = styled.div`
   width: 75%;
@@ -20,8 +22,9 @@ export const ModalWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
-  z-index: 10;
+  z-index: 99999;
   border-radius: 10px;
+  overflow: hidden;
 `
 
 export const CloseButton = styled(IoIosClose)`
@@ -32,31 +35,39 @@ export const CloseButton = styled(IoIosClose)`
   top: 0;
   right: 0;
 `
+
 export const CommentImage = styled.img`
   width: 100%;
   height: 100%;
+  max-height: 800px;
   border-radius: 8px 0 0 8px;
 `
 
-export const Row = styled.div`
+export const UserInfo = styled.div`
   display: flex;
   align-items: center;
-  ${({userInfo}) => userInfo ?
-      "margin-bottom: 22px;" +
-      "padding: 8px 16px;" +
-      "border-bottom: 2px solid darkgrey;" +
-      "img { border-radius 50%; border: 2px solid #fff; width:32px; height:32px; }"
-      : "justify-content: flex-start;" +
-      "padding: 8px 4px;"};
+  padding: 8px 16px;
+  border-bottom: 1px solid darkgrey;
+  justify-content: flex-start;
 `
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px;
+`
+
 export const CommentsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1 1;
   align-items: start;
-  padding: 8px 16px;
-  height: 100%;
+  padding: 16px;
+  margin-top: 5px;
   width: 100%;
   border-bottom: 1px solid darkgrey;
+  overflow-y: auto;
 `
 
 export const NewCommentRow = styled.div`
@@ -100,15 +111,33 @@ export const SendCommentButton = styled.button`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: space-between;
+  max-height: 800px;
   ${({info}) => info ?
       "color: #fff;" : null};
 `
 export const Comment = styled.div`
   display: flex;
   align-items: center;
-  margin: 24px 0;
+  justify-content: space-between;
+  ${({userPost}) => userPost ? "margin: 8px 0" : 'margin-bottom: 16px;'};
+  vertical-align: baseline;
   width: 100%;
+`
+
+export const CommentInfo = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  justify-content: flex-start;
+`
+
+export const BottomContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 800px;
+    color: #fff;
 `
 
 export const UserName = styled.p`
@@ -117,6 +146,7 @@ export const UserName = styled.p`
   margin-left: 8px;
   cursor: pointer;
 `
+
 export const UserPhoto = styled.img`
   width: 32px;
   height: 32px;
@@ -132,7 +162,14 @@ export const CommentText = styled.p`
 `
 
 export const LikesText = styled.p`
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
   margin: 0 2% 2% 2%;
+`
+
+export const MiniLikeButton = styled(TiHeartOutline)`
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  color: #fff;
 `

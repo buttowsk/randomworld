@@ -21,6 +21,7 @@ export const SidebarHeader = styled.div`
   align-items: center;
   font-size: 24px;
   font-weight: 600;
+  font-family: 'Bellota', cursive;
   background-color: transparent;
   margin: 32px;
   cursor: pointer;

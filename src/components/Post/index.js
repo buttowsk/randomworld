@@ -12,6 +12,10 @@ import {
 } from "./styles"
 import {useEffect, useState} from "react";
 import {CommentsModal} from "../CommentsModal";
+import {useGeneratePostProfile} from "../../hooks/useGeneratePostProfile";
+import {Link} from "react-router-dom";
+
+
 export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText, postLikes, randomComments }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [likes, setLikes] = useState(postLikes)
@@ -37,6 +41,10 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
         setIsModalOpen(!isModalOpen)
     }
 
+    const handleProfileClick = () => {
+        window.location.href = `/profile/${profileName}`;
+    }
+
 
     return (
         <>
@@ -52,8 +60,9 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
             <Container>
                 <PostContent>
                     <Row info={true}>
-                        <UserPhoto src={profilePic} alt="profile"/>
-                        <UserName>{profileName}</UserName></Row>
+                        <UserPhoto src={profilePic} alt="profile" onClick={handleProfileClick}/>
+                        <UserName onClick={handleProfileClick}>{profileName}</UserName>
+                    </Row>
                     <PostImage src={postPhoto} alt={postPhotoAlt} />
                     <Row>
                         <LikeButton isLiked={isLiked} onClick={handleLikeClick} />

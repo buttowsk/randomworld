@@ -1,7 +1,18 @@
-import {Row, Container, PostImage, PostContent, Column, LikeButton, SendButton, CommentButton, Likes} from "./styles"
+import {
+    Row,
+    Container,
+    PostImage,
+    PostContent,
+    Column,
+    LikeButton,
+    SendButton,
+    CommentButton,
+    Likes,
+    Comments, UserPhoto, UserName, PostText
+} from "./styles"
 import {useEffect, useState} from "react";
 import {CommentsModal} from "../CommentsModal";
-export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText,postLikes }) => {
+export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText, postLikes, randomComments }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [likes, setLikes] = useState(postLikes)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -30,27 +41,30 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
     return (
         <>
             {isModalOpen ? <CommentsModal isModalOpen={isModalOpen}
-                                     setIsModalOpen={setIsModalOpen}
-                                     profilePic={profilePic}
-                                     profileName={profileName}
-                                     image={postPhoto}
-                                     postText={postText}
-                                     postLikes={postLikes}
+                                          setIsModalOpen={setIsModalOpen}
+                                          profilePic={profilePic}
+                                          profileName={profileName}
+                                          image={postPhoto}
+                                          postText={postText}
+                                          postLikes={postLikes}
+                                          randomComments={randomComments}
             /> : null}
-        <Container>
-            <PostContent>
-                <Row info={true}><img src={profilePic} alt="profile"/> <p>{profileName}</p></Row>
-                <PostImage src={postPhoto} alt={postPhotoAlt} />
-                <Row>
-                    <LikeButton isliked={isLiked} onClick={handleLikeClick} />
-                    <CommentButton onClick={handleCommentClick} />
-                    <SendButton />
-                </Row>
-                <Likes>{`${likes} curtidas`}</Likes>
-                <Column>{postText}</Column>
-                <Column comments={true}>{"2q3131 comentários"}</Column>
-            </PostContent>
-        </Container>
+            <Container>
+                <PostContent>
+                    <Row info={true}>
+                        <UserPhoto src={profilePic} alt="profile"/>
+                        <UserName>{profileName}</UserName></Row>
+                    <PostImage src={postPhoto} alt={postPhotoAlt} />
+                    <Row>
+                        <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
+                        <CommentButton onClick={handleCommentClick} />
+                        <SendButton />
+                    </Row>
+                    <Likes>{`${likes} curtidas`}</Likes>
+                    <PostText>{postText}</PostText>
+                    <Comments onClick={handleCommentClick}>Ver todos os {randomComments.length} comentários</Comments>
+                </PostContent>
+            </Container>
         </>
     );
 

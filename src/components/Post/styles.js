@@ -10,51 +10,40 @@ export const Container = styled.div`
   padding: 36px 0;
   max-width: 520px;
   color: #fff;
-  
-  hr {
-    width: 100%;
-    margin-top: 22px;
-  }
 `
 export const PostContent = styled.div`
   width: 80%;
-  border: 3px solid #8956f1;
-  border-radius: 12px;
+  border-bottom: 1px solid #BDCDD6;
 `
 
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  ${props => props.info ? "justify-content: flex-start;" +
-          "& > img { margin: 6px 12px; }" +
-          "img { border-radius 50%; border: 2px solid #fff; }" 
-           : null};
-  padding: 4px 2px;
+  padding: 8px 2px;
   & > * { cursor: pointer; }
 `
 
-export const Column = styled.div`
+export const PostText = styled.div`
   font-weight: 600;
   display: flex;
   flex-direction: column;
   align-items: start;
-  margin: 8px 2%;
-  padding: 2px 2px;
-  ${props => props.comments ? "color: #BDCDD6;" : null}
+  margin: 8px 2% 8px 0;
 `
 
 export const PostImage = styled.img`
   width: 100%;
   height: 300px;
-  border-radius: 8px;
-  box-shadow: 1px 2px 2px rgba(240, 233, 210, 0.25);
+  border-radius: 5px;
+  filter: drop-shadow(0 0 1px rgba(151, 210, 236, 0.5));
+  
 `
 export const LikeButton = styled(FaHeart)`
   width: 28px;
   height: 28px;
-  margin: 2%;
-  ${props => props.isliked ? "fill: red;" +
+  margin: 2% 2% 2% 0;
+  ${({isLiked}) => isLiked ? "fill: red;" +
       "transition: color 1s ease;" : "color: white"};
 `
 export const CommentButton = styled(FaRegComment)`
@@ -70,5 +59,26 @@ export const SendButton = styled(TbSend)`
 export const Likes = styled.p`
   font-weight: 500;
   font-size: 16px;
-  margin: 8px 2%; 
+  margin: 0 2% 2% 0;
+`
+export const Comments = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  margin: 12px 2% 24px 0;
+  color: #BDCDD6;
+  cursor: pointer;
+`
+
+export const UserName = styled.p`
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 0 2% 0 2%;
+`
+export const UserPhoto = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
 `

@@ -9,11 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
  body {
-   background-color: #181D31;
-   background-attachment: fixed;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
+   background-color: #25316D;
  }
 
 `

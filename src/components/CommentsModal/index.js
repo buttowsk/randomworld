@@ -4,22 +4,16 @@ import {
     CloseButton,
     Row,
     CommentImage,
-    Input,
     Column,
-    CommentsContainer, UserName, UserPhoto, CommentText, Comment
+    CommentsContainer, UserName, UserPhoto, CommentText, Comment, LikesText, NewCommentRow, SendCommentButton, CommentInput
 } from "./styles"
-import {useRef, useState} from "react";
-import {CommentButton, LikeButton, Likes, SendButton} from "../Post/styles";
-import {useGetRandomUser} from "../../hooks/useGetRandomUser";
-import {useGetRandomComment} from "../../hooks/useGetRandomComment";
+import { useRef, useState } from "react";
+import {CommentButton, LikeButton, SendButton} from "../Post/styles";
 
-export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileName, image, postLikes, postText}) => {
+export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileName, image, postLikes, postText, randomComments}) => {
     const [isLiked, setIsLiked] = useState(false);
     const [likes, setLikes] = useState(postLikes);
     const modalRef = useRef()
-    const {comment} = useGetRandomComment()
-    const {user} = useGetRandomUser()
-    const [newComment, setNewComment] = useState('')
 
     const handleLikeClick = () => {
         if (isLiked) {
@@ -35,8 +29,6 @@ export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileN
             setIsModalOpen(false)
         }
     }
-    const numComments = Math.floor(Math.random() * 10);
-    const randomComments = Array.isArray(comment) ? comment.slice(0, numComments) : [];
 
     return (
         <>
@@ -48,25 +40,34 @@ export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileN
                             <CommentImage src={image}/>
                         </Column>
                         <Column info={true}>
-                            <Row userInfo={true}><UserPhoto src={profilePic} alt="profile"/> <UserName>{profileName}</UserName> <p>{postText}</p></Row>
+                            <Row userInfo={true}>
+                                <UserPhoto src={profilePic} alt="profile"/>
+                                <UserName>{profileName}</UserName>
+                                <CommentText>{postText}</CommentText>
+                            </Row>
                             <CommentsContainer>
                                 {randomComments.map((comment, index) => {
                                     return (
-                                            <Comment ke={index}>
-                                                <UserPhoto src={user[index].photo} alt={'profile'}/>
-                                                <UserName>{user[index].username}</UserName>
-                                                <CommentText>{comment}</CommentText>
+                                            <Comment key={index}>
+                                                <UserPhoto src={comment.user.photo} alt={'profile'}/>
+                                                <UserName>{comment.user.username}</UserName>
+                                                <CommentText>{comment.commentText.body}</CommentText>
                                             </Comment>
                                         )
                                 })}
                             </CommentsContainer>
                             <Row>
-                                <LikeButton isliked={isLiked} onClick={handleLikeClick} />
+                                <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
                                 <CommentButton />
                                 <SendButton />
                             </Row>
-                            <Likes>{`${likes} curtidas`}</Likes>
-                            <Input placeholder="Adicione um comentário..." type={"text"} value={newComment} onChange={(e) => setNewComment(e.target.value)}/>
+                            <LikesText>{`${likes} curtidas`}</LikesText>
+                            <NewCommentRow>
+                                <CommentInput placeholder={'Adicione um comentário...'} type={'text'}/>
+                                <SendCommentButton>
+                                    Publicar
+                                </SendCommentButton>
+                            </NewCommentRow>
                         </Column>
                     </ModalWrapper>
                 </Background>

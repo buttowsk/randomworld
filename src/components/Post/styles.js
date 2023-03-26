@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {TbSend} from "react-icons/tb";
 import {FaRegComment} from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div`
   margin: auto auto 0 auto;
@@ -23,6 +24,8 @@ export const Row = styled.div`
   padding: 8px 2px;
   & > * { cursor: pointer; }
 `
+
+
 
 export const PostText = styled.div`
   font-weight: 600;
@@ -71,11 +74,20 @@ export const Comments = styled.p`
   cursor: pointer;
 `
 
-export const UserName = styled.p`
+export const UserName = styled(Link)`
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   margin: 0 2% 0 2%;
+  text-decoration: none;
+  color: #fff;
+`
+
+export const UserPhotoLink = styled(Link)`
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-decoration: none;
 `
 export const UserPhoto = styled.img`
   width: 32px;

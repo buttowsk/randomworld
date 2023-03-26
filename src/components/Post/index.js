@@ -7,7 +7,7 @@ import {
     SendButton,
     CommentButton,
     Likes,
-    Comments, UserPhoto, UserName, PostText
+    Comments, UserPhoto, UserName, PostText, UserPhotoLink
 } from "./styles"
 import {useEffect, useState} from "react";
 import {CommentsModal} from "../CommentsModal";
@@ -39,9 +39,6 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
         setIsModalOpen(!isModalOpen)
     }
 
-    const handleProfileClick = () => {
-        window.location.href = `/profile/${profileName}`;
-    }
 
 
     return (
@@ -57,9 +54,13 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
             /> : null}
             <Container>
                 <PostContent>
-                    <Row info={true}>
-                        <UserPhoto src={profilePic} alt="profile" onClick={handleProfileClick}/>
-                        <UserName onClick={handleProfileClick}>{profileName}</UserName>
+                    <Row>
+                        <UserPhotoLink to={`/profile/${profileName}`}>
+                            <UserPhoto src={profilePic} alt="profile" />
+                        </UserPhotoLink>
+                        <UserName>
+                            {profileName}
+                        </UserName>
                     </Row>
                     <PostImage src={postPhoto} alt={postPhotoAlt} />
                     <Row>

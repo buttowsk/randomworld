@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {TbSend} from "react-icons/tb";
-import {FaRegComment, FaHeart} from "react-icons/fa";
+import {FaRegComment} from "react-icons/fa";
 
 export const Container = styled.div`
   margin: auto auto 0 auto;
@@ -38,12 +38,15 @@ export const PostImage = styled.img`
   border-radius: 5px;
   filter: drop-shadow(0 0 0 rgba(151, 210, 236, 0.5));
 `
-export const LikeButton = styled(FaHeart)`
+export const LikeButton = styled.button`
   width: 28px;
   height: 28px;
   margin: 2% 2% 2% 0;
-  ${({isLiked}) => isLiked ? "fill: red;" +
+  font-size: 28px;
+  ${({isLiked}) => isLiked ? "color: red;" +
       "transition: color 1s ease;" : "color: white"};
+  border: none;
+  background-color: transparent;
 `
 export const CommentButton = styled(FaRegComment)`
   width: 28px;

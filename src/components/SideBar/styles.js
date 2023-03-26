@@ -34,7 +34,7 @@ export const MenuList = styled.ul`
   flex-direction: column;
   list-style: none;
   ${({bottom}) => bottom ? 'justify-content: flex-end;' +
-          'margin-bottom: 10px;' : null};
+      'margin-bottom: 10px;' : null};
 `
 
 
@@ -58,11 +58,16 @@ export const MenuItem = styled.li`
 `
 
 export const MenuText = styled.h3`
+  display: flex;
+  align-items: center;
   font-size: 16px;
   font-weight: 500;
   color: #fff;
   line-height: 48px;
   margin-left: 16px;
+    & > * {
+        margin-right: 8px;
+    }
 `
 
 export const ProfileImage = styled.img`

@@ -17,6 +17,7 @@ import {
 } from "./styles"
 import { useRef, useState } from "react";
 import {CommentButton, LikeButton, SendButton} from "../Post/styles";
+import {FaHeart} from "react-icons/fa";
 
 export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileName, image, postLikes, postText, randomComments}) => {
     const [isLiked, setIsLiked] = useState(false);
@@ -37,6 +38,7 @@ export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileN
             setIsModalOpen(false)
         }
     }
+
 
     return (
         <>
@@ -75,13 +77,13 @@ export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileN
                             </CommentsContainer>
                             <BottomContainer>
                                 <ButtonsContainer>
-                                    <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
+                                    <LikeButton isLiked={isLiked} onClick={handleLikeClick}><FaHeart/></LikeButton>
                                     <CommentButton />
                                     <SendButton />
                                 </ButtonsContainer>
                                 <LikesText>{`${likes} curtidas`}</LikesText>
                                 <NewCommentRow>
-                                    <CommentInput placeholder={'Adicione um comentário...'} type={'text'}/>
+                                    <CommentInput placeholder={'Adicione um comentário...'} type={'text'} />
                                     <SendCommentButton>
                                         Publicar
                                     </SendCommentButton>

@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
  body {
-   background-color: #25316D;
+   background-color: #000;
  }
 
   *::-webkit-scrollbar-track {
@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 10px;
   }
   *::-webkit-scrollbar-thumb {
-    background: #97D2EC;
+    background: #FEF5AC;
     border-radius: 10px;
   }
 `

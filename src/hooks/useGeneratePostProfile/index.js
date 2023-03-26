@@ -9,7 +9,7 @@ export const useGeneratePostProfile = ({username}) => {
         setIsLoadingPostProfile(true);
         unsplashApi.get(`/users/${username}`)
             .then(response => {
-                setPostProfile(response.data.results);
+                setPostProfile(response.data);
             })
             .catch(e => {
                 console.log(e)

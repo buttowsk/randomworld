@@ -27,7 +27,7 @@ export const Home = () => {
 
     return (
         <>
-            <SideBar user={users[Math.floor(Math.random() * users.length)]} />
+            <SideBar user={photos[0]} />
             {photos.map((photo) => {
                 const totalComments = Math.floor(Math.random() * 20) + 1;
                 const randomComments = getRandomComments(totalComments);

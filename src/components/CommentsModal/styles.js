@@ -56,6 +56,10 @@ export const ButtonsContainer = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 8px 16px;
+
+  & > * {
+    cursor: pointer;
+  }
 `
 
 export const CommentsContainer = styled.div`
@@ -133,11 +137,11 @@ export const CommentInfo = styled.div`
 `
 
 export const BottomContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-height: 800px;
-    color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 800px;
+  color: #fff;
 `
 
 export const UserName = styled.p`
@@ -171,5 +175,4 @@ export const MiniLikeButton = styled(TiHeartOutline)`
   width: 16px;
   height: 16px;
   cursor: pointer;
-  color: #fff;
 `

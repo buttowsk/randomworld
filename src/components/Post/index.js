@@ -12,8 +12,7 @@ import {
 } from "./styles"
 import {useEffect, useState} from "react";
 import {CommentsModal} from "../CommentsModal";
-import {useGeneratePostProfile} from "../../hooks/useGeneratePostProfile";
-import {Link} from "react-router-dom";
+import {FaHeart} from "react-icons/fa";
 
 
 export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText, postLikes, randomComments }) => {
@@ -65,7 +64,7 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
                     </Row>
                     <PostImage src={postPhoto} alt={postPhotoAlt} />
                     <Row>
-                        <LikeButton isLiked={isLiked} onClick={handleLikeClick} />
+                        <LikeButton isLiked={isLiked} onClick={handleLikeClick}><FaHeart/></LikeButton>
                         <CommentButton onClick={handleCommentClick} />
                         <SendButton />
                     </Row>

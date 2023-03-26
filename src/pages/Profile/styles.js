@@ -198,7 +198,7 @@ export const SendMessageButton = styled.button`
 `
 export const FollowButton = styled.button`
   width: 140px;
-  height: 34px;
+  height: 40px;
   outline: none;
   border-radius: 8px;
   background-color: transparent;

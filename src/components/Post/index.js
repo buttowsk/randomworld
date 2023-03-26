@@ -3,7 +3,6 @@ import {
     Container,
     PostImage,
     PostContent,
-    Column,
     LikeButton,
     SendButton,
     CommentButton,

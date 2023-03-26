@@ -13,6 +13,10 @@ export const SidebarWrapper = styled.div`
   border-right: 1px solid #5F6F94;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
+  
+  @media screen and (max-width: 768px) {
+    width: 130px;
+  }
 `;
 
 export const SidebarHeader = styled.div`

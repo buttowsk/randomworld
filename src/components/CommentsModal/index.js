@@ -15,13 +15,11 @@ import {
     CommentInput,
     ButtonsContainer, UserInfo, MiniLikeButton, CommentInfo, BottomContainer
 } from "./styles"
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {CommentButton, LikeButton, SendButton} from "../Post/styles";
 import {FaHeart} from "react-icons/fa";
 
-export const CommentsModal = ({isModalOpen, setIsModalOpen, profilePic, profileName, image, postLikes, postText, randomComments}) => {
-    const [isLiked, setIsLiked] = useState(false);
-    const [likes, setLikes] = useState(postLikes);
+export const CommentsModal = ({ isModalOpen, setIsModalOpen, profilePic, profileName, image, postText, randomComments, setLikes, likes, setIsLiked, isLiked }) => {
     const modalRef = useRef()
 
     const handleLikeClick = () => {

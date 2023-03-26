@@ -50,6 +50,10 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
                                           postText={postText}
                                           postLikes={postLikes}
                                           randomComments={randomComments}
+                                          setLikes={setLikes}
+                                          likes={likes}
+                                          isLiked={isLiked}
+                                          setIsLiked={setIsLiked}
             /> : null}
             <Container>
                 <PostContent>

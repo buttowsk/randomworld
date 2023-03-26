@@ -35,11 +35,10 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
         }
         setIsLiked(!isLiked);
     };
+
     const handleCommentClick = () => {
         setIsModalOpen(!isModalOpen)
     }
-
-
 
     return (
         <>
@@ -58,7 +57,7 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
                         <UserPhotoLink to={`/profile/${profileName}`}>
                             <UserPhoto src={profilePic} alt="profile" />
                         </UserPhotoLink>
-                        <UserName>
+                        <UserName to={`/profile/${profileName}`}>
                             {profileName}
                         </UserName>
                     </Row>

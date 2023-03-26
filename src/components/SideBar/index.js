@@ -1,15 +1,6 @@
-import {MenuItem, MenuList, MenuText, SidebarHeader, SidebarWrapper, ProfileImage} from "./styles"
+import {MenuItem, MenuList, MenuText, SidebarHeader, SidebarWrapper, ProfileImage, MenuItemLink} from "./styles"
 import {FiHome} from "react-icons/fi";
-export const SideBar = ({user}) => {
-
-    const handleHome = () => {
-        window.location.href = `/`
-    }
-
-    const handleProfileClick = () => {
-        window.location.href = `/profile/${user.user.username}`;
-    }
-
+export const SideBar = ({ user }) => {
     if (!user || !user.user.profile_image || !user.user.username) {
         return <h1>Loading...</h1>;
     }
@@ -20,9 +11,9 @@ export const SideBar = ({user}) => {
                 RandomWorld
             </SidebarHeader>
             <MenuList>
-                <MenuItem onClick={handleHome}>
+                <MenuItemLink to={'/'}>
                     <MenuText><FiHome/> Home</MenuText>
-                </MenuItem>
+                </MenuItemLink>
                 <MenuItem>
                     <MenuText>Coisas</MenuText>
                 </MenuItem>
@@ -34,12 +25,11 @@ export const SideBar = ({user}) => {
                 </MenuItem>
             </MenuList>
             <MenuList bottom={true}>
-                <MenuItem onClick={handleProfileClick}>
+                <MenuItemLink to={`/profile/${user.user.username}`}>
                     <ProfileImage src={user.user.profile_image.small} />
                     <MenuText>Perfil</MenuText>
-                </MenuItem>
+                </MenuItemLink>
             </MenuList>
         </SidebarWrapper>
-
     );
 }

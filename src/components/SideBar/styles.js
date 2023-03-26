@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const SidebarWrapper = styled.div`
   width: 255px;
@@ -37,8 +38,26 @@ export const MenuList = styled.ul`
       'margin-bottom: 10px;' : null};
 `
 
-
 export const MenuItem = styled.li`
+  text-decoration: none;
+  width: 70%;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 24px;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  overflow-x: hidden;
+  background-color: transparent;
+  padding: 0 16px;
+  margin: 10px auto;
+  &:hover {
+    background-color: rgba(151, 210, 236, 0.5);
+  }
+`
+
+export const MenuItemLink = styled(Link)`
   text-decoration: none;
   width: 70%;
   height: 48px;
@@ -65,9 +84,9 @@ export const MenuText = styled.h3`
   color: #fff;
   line-height: 48px;
   margin-left: 16px;
-    & > * {
-        margin-right: 8px;
-    }
+  & > * {
+    margin-right: 8px;
+  }
 `
 
 export const ProfileImage = styled.img`

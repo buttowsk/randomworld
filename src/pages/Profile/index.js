@@ -60,10 +60,10 @@ export const Profile = () => {
                             <ProfileP>{postProfile.name}</ProfileP>
                             <ProfileP>{postProfile.bio}</ProfileP>
                             <br/>
-                            <ProfileP> <LocationIcon /> {postProfile.location}</ProfileP>
-                            <ProfileP><InstagramIcon /> {postProfile.instagram_username}</ProfileP>
+                            {postProfile.location ? <ProfileP> <LocationIcon /> {postProfile.location}</ProfileP> : null}
+                            {postProfile.instagram_username ? <ProfileP><InstagramIcon /> {postProfile.instagram_username}</ProfileP> : null}
                             {postProfile.twitter_username ? <ProfileP><TwitterIcon/> {postProfile.twitter_username}</ProfileP> : null}
-                            <ProfileP><PortfolioIcon /> {postProfile.portfolio_url}</ProfileP>
+                            {postProfile.portfolio_url ? <ProfileP><PortfolioIcon /> {postProfile.portfolio_url}</ProfileP> : null}
                             {postProfile.for_hire ? <ProfileP> <WorkOnIcon /> Livre para ofertas: Sim</ProfileP> : <ProfileP> <WorkOffIcon /> Livre para ofertas: Não</ProfileP> }
                         </BioContainer>
                     </TopColumn>

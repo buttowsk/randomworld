@@ -23,23 +23,29 @@ import {
     PortfolioIcon, WorkOnIcon, WorkOffIcon, ProfileA
 } from './styles'
 import {SideBar} from "../../components/SideBar";
-import {useRandomUsers} from "../../hooks/useRandomUsers";
 import {useGetPhotos} from "../../hooks/useGetPhotos";
 import {useGetPhotosFromUser} from "../../hooks/useGetPhotosFromUser";
 import {StyledLoading} from "../Home/styles";
 import {useParams} from "react-router-dom";
+import {useState} from "react";
 
 export const Profile = () => {
-    const {users, isLoadingUsers} = useRandomUsers(1)
     const {username} = useParams();
     const {postProfile, isLoadingProfile} = useGeneratePostProfile({username});
     const {userPhotos, isLoadingUserPhotos} = useGetPhotosFromUser({username});
-    // header user //
     const {photos, isLoadingPhotos} = useGetPhotos('nature');
-    // header user //
+    const [isFollower, setIsFollower] = useState(false);
 
-    if (!postProfile || isLoadingProfile || !postProfile.profile_image || !postProfile.photos || isLoadingUsers || !users || isLoadingPhotos || !photos || isLoadingUserPhotos || !userPhotos) {
+    if (!postProfile || isLoadingProfile || !postProfile.profile_image || !postProfile.photos || isLoadingPhotos || !photos || isLoadingUserPhotos || !userPhotos) {
         return <StyledLoading>Loading...</StyledLoading>;
+    }
+
+    const handlePhotoClick = (photoId) => {
+        console.log(photoId);
+    }
+
+    const handleFollowClick = () => {
+        setIsFollower(!isFollower);
     }
 
     return (
@@ -53,7 +59,7 @@ export const Profile = () => {
                     <TopColumn>
                         <TopRow>
                             <ProfileUsername>{postProfile.username}</ProfileUsername>
-                            <FollowButton>Seguir</FollowButton>
+                            <FollowButton onClick={handleFollowClick}>{isFollower ? 'Unfollow' : 'Follow'}</FollowButton>
                             <SendMessageButton>Enviar mensagem</SendMessageButton>
                         </TopRow>
                         <TopRow>
@@ -90,11 +96,15 @@ export const Profile = () => {
                         <ProfileH1>Publicações</ProfileH1>
                     </PublicationRow>
                     <AllPhotosContainer>
-                        {userPhotos.map((photo) => (
-                            <PhotoContainer key={photo.id}>
-                                <Photo src={photo.urls.regular}/>
-                            </PhotoContainer>
-                        ))}
+                        {userPhotos.map((photo, index) => {
+                            return (
+                                <>
+                                    <PhotoContainer key={index} onClick={() => handlePhotoClick(photo.id)}>
+                                        <Photo src={photo.urls.regular}/>
+                                    </PhotoContainer>
+                                </>
+                            )
+                        })}
                     </AllPhotosContainer>
                 </PublicationsContainer>
             </Container>

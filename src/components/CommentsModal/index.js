@@ -27,10 +27,6 @@ export const CommentsModal = ({ isModalOpen, setIsModalOpen, profilePic, profile
     const {users, isLoadingUsers} = useRandomUsers(1);
     const [newComment, setNewComment] = useState('')
 
-    if (isLoadingUsers || !users) {
-        return <div>Loading...</div>
-    }
-
     const handleLikeClick = () => {
         if (isLiked) {
             setLikes(parseInt(likes) - 1);

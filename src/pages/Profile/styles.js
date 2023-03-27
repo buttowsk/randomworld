@@ -201,7 +201,7 @@ color: #fff;
 `
 
 export const SendMessageButton = styled.button`
-width: 200px;
+min-width: 200px;
 height: 40px;
 outline: none;
 border-radius: 8px;
@@ -221,15 +221,14 @@ transition: all 0.2s ease-in-out;
 }
 `
 export const FollowButton = styled.button`
-width: 140px;
-height: 40px;
+
 outline: none;
 border-radius: 8px;
 background-color: transparent;
 margin: 0 22px;
 color: #fff;
 border: 2px solid #fff;
-padding: 8px 16px;
+padding: 4px 8px;
 text-align: center;
 font-size: 16px;
 font-weight: 600;

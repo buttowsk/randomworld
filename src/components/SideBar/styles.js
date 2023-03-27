@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 
 export const SidebarWrapper = styled.div`
-  width: 255px;
+  width: 12%;
   display: flex;
   flex-direction: column;
   color: #fff;
@@ -13,7 +13,7 @@ export const SidebarWrapper = styled.div`
   border-right: 1px solid #5F6F94;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
-  
+
   @media screen and (max-width: 768px) {
     width: 130px;
   }

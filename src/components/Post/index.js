@@ -78,5 +78,4 @@ export const Post = ({ profilePic, profileName, postPhoto,postPhotoAlt, postText
             </Container>
         </>
     );
-
 }

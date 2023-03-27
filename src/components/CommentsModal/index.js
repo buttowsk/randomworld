@@ -15,12 +15,21 @@ import {
     CommentInput,
     ButtonsContainer, UserInfo, MiniLikeButton, CommentInfo, BottomContainer
 } from "./styles"
-import { useRef } from "react";
+import {useRef, useState} from "react";
 import {CommentButton, LikeButton, SendButton} from "../Post/styles";
 import {FaHeart} from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
+import {useRandomUsers} from "../../hooks/useRandomUsers";
 
 export const CommentsModal = ({ isModalOpen, setIsModalOpen, profilePic, profileName, image, postText, randomComments, setLikes, likes, setIsLiked, isLiked }) => {
     const modalRef = useRef()
+    const navigate = useNavigate()
+    const {users, isLoadingUsers} = useRandomUsers(1);
+    const [newComment, setNewComment] = useState('')
+
+    if (isLoadingUsers || !users) {
+        return <div>Loading...</div>
+    }
 
     const handleLikeClick = () => {
         if (isLiked) {
@@ -37,6 +46,26 @@ export const CommentsModal = ({ isModalOpen, setIsModalOpen, profilePic, profile
         }
     }
 
+    const profileClick = () => {
+        navigate(`/profile/${profileName}`)
+    }
+
+    const handleNewComment = (newComment) => {
+        randomComments.unshift({
+            photo: users[0].picture.thumbnail,
+            username: users[0].login.username,
+            commentText: {
+                body: newComment
+            }
+        })
+        setNewComment('');
+    }
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleNewComment(newComment)
+        }
+    }
 
     return (
         <>
@@ -49,8 +78,8 @@ export const CommentsModal = ({ isModalOpen, setIsModalOpen, profilePic, profile
                         </Column>
                         <Column info={true}>
                             <UserInfo>
-                                <UserPhoto src={profilePic} alt="profile"/>
-                                <UserName>{profileName}</UserName>
+                                <UserPhoto src={profilePic} alt="profile" onClick={profileClick}/>
+                                <UserName onClick={profileClick}>{profileName}</UserName>
                             </UserInfo>
                             <CommentsContainer>
                                 <Comment userPost={true}>
@@ -60,13 +89,13 @@ export const CommentsModal = ({ isModalOpen, setIsModalOpen, profilePic, profile
                                         <CommentText>{postText}</CommentText>
                                     </CommentInfo>
                                 </Comment>
-                                {randomComments.map((comment, index) => {
+                                {randomComments.map((fullComment, index) => {
                                     return (
                                         <Comment key={index}>
                                             <CommentInfo>
-                                                <UserPhoto src={comment.user.photo} alt={'profile'}/>
-                                                <UserName>{comment.user.username}</UserName>
-                                                <CommentText>{comment.commentText.body}</CommentText>
+                                                <UserPhoto src={fullComment.photo} alt={'profile'}/>
+                                                <UserName>{fullComment.username}</UserName>
+                                                <CommentText>{fullComment.commentText.body}</CommentText>
                                             </CommentInfo>
                                             <MiniLikeButton/>
                                         </Comment>
@@ -81,8 +110,8 @@ export const CommentsModal = ({ isModalOpen, setIsModalOpen, profilePic, profile
                                 </ButtonsContainer>
                                 <LikesText>{`${likes} curtidas`}</LikesText>
                                 <NewCommentRow>
-                                    <CommentInput placeholder={'Adicione um comentário...'} type={'text'} />
-                                    <SendCommentButton>
+                                    <CommentInput value={newComment} placeholder={'Adicione um comentário...'} type={'text'} onChange={(e) => setNewComment(e.target.value)} onKeyPress={handleKeyPress} />
+                                    <SendCommentButton onClick={() => handleNewComment(newComment)}>
                                         Publicar
                                     </SendCommentButton>
                                 </NewCommentRow>
